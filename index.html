@@ -1079,6 +1079,70 @@
       .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8 { grid-column: auto; grid-row: auto; }
       .footer-top { flex-direction: column; gap: 32px; }
     }
+    @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .form-row,
+  .booking-grid,
+  .contact-grid,
+  .two-col,
+  .split-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .container,
+  .section,
+  .booking-panel,
+  .contact-panel,
+  .hero-content,
+  .hero-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  h1 {
+    font-size: 42px !important;
+    line-height: 1.1 !important;
+  }
+
+  h2 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+  }
+
+  p {
+    font-size: 16px !important;
+  }
+
+  .reserve-btn,
+  .cta-button,
+  .hero-actions,
+  .play-link {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+}
   </style>
 </head>
 <body>
