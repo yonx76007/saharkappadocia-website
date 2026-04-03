@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaharCappadocia — Luxury Travel in the Heart of Türkiye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-pale: rgba(201,168,76,0.12);
+      --cream: #F5EFE0;
+      --cream-dim: rgba(245,239,224,0.6);
+      --ink: #1A1208;
+      --ink-mid: #3D2E18;
+      --dawn-sky: #FF8C42;
+      --dawn-mid: #FFB347;
+      --dusk-purple: #2D1B4E;
+      --stone: #8B7355;
+      --stone-light: #C4A882;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════
+       NAVIGATION
+    ══════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 24px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.5s ease;
+    }
+    nav.scrolled {
+      background: rgba(26,18,8,0.92);
+      backdrop-filter: blur(20px);
+      padding: 16px 60px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--cream); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      padding: 10px 24px;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+
+    /* ══════════════════════════
+       HERO — CINEMATIC SUNRISE
+    ══════════════════════════ */
+    #hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Sky gradient layers */
+    .sky-layer {
+      position: absolute;
+      inset: 0;
+    }
+
+    #sky-base {
+      background: linear-gradient(
+        180deg,
+        #0d0820 0%,
+        #1a0f3a 15%,
+        #3d1f5c 28%,
+        #7b3a6e 38%,
+        #c45c3c 50%,
+        #e8853a 60%,
+        #f5a843 70%,
+        #fdc97a 80%,
+        #fde8b8 90%,
+        #fff5e0 100%
+      );
+    }
+
+    /* Sun glow */
+    #sun-glow {
+      position: absolute;
+      bottom: 34%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fffde0 0%, #ffd870 25%, #ff9a3c 55%, transparent 75%);
+      filter: blur(2px);
+      animation: sunrise 8s ease-out forwards;
+    }
+
+    @keyframes sunrise {
+      from { bottom: 28%; opacity: 0.4; }
+      to   { bottom: 34%; opacity: 1; }
+    }
+
+    /* Atmospheric haze */
+    #haze {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top,
+        rgba(253,168,80,0.25) 0%,
+        rgba(253,168,80,0.08) 40%,
+        transparent 100%
+      );
+    }
+
+    /* Mountain/valley silhouette — Cappadocia landscape */
+    #landscape {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+    }
+
+    #landscape svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Balloons */
+    .balloon-wrap {
+      position: absolute;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0px) translateX(0px); }
+      25%  { transform: translateY(-18px) translateX(6px); }
+      50%  { transform: translateY(-8px) translateX(-4px); }
+      75%  { transform: translateY(-22px) translateX(8px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    @keyframes drift {
+      0%   { left: -8%; }
+      100% { left: 108%; }
+    }
+
+    /* Stars */
+    #stars {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 45%;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--op, 0.8); }
+      50% { opacity: 0.1; }
+    }
+
+    /* Hero content */
+    #hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      padding: 0 80px 100px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--cream-dim);
+      max-width: 480px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.2s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.4s forwards;
+    }
+
+    .btn-primary {
+      padding: 16px 36px;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cream-dim);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--gold-light); }
+
+    .play-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(245,239,224,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s;
+    }
+    .btn-ghost:hover .play-circle { border-color: var(--gold); }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      right: 80px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s ease 2s forwards;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════
+       INTRO STRIP
+    ══════════════════════════ */
+    #intro {
+      background: var(--cream);
+      color: var(--ink);
+      padding: 80px 80px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      border-bottom: 1px solid rgba(26,18,8,0.08);
+    }
+
+    .intro-text {
+      flex: 1;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+    .eyebrow-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .intro-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .intro-headline em { font-style: italic; color: var(--gold); }
+
+    .intro-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      max-width: 500px;
+    }
+
+    .intro-stats {
+      display: flex;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════
+       EXPERIENCES / TOUR PACKAGES
+    ══════════════════════════ */
+    #experiences {
+      background: var(--ink);
+      padding: 120px 80px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--gold-light); }
+
+    .section-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(245,239,224,0.5);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .package-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .package-visual {
+      width: 100%;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* SVG scene backgrounds for packages */
+    .pkg-scene {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .package-card:hover .pkg-scene { transform: scale(1.06); }
+
+    .package-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px;
+    }
+
+    .pkg-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 1px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .pkg-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .pkg-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(245,239,224,0.6);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .pkg-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .pkg-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--gold-light);
+      font-weight: 300;
+    }
+    .pkg-price span { font-size: 13px; color: rgba(245,239,224,0.4); }
+
+    .pkg-arrow {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+    .package-card:hover .pkg-arrow { background: var(--gold); color: var(--ink); }
+
+    /* ══════════════════════════
+       CAVE HOTEL LUXURY
+    ══════════════════════════ */
+    #hotel {
+      background: var(--cream);
+      color: var(--ink);
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 700px;
+    }
+
+    .hotel-visual {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hotel-scene {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      display: block;
+    }
+
+    .hotel-content {
+      padding: 100px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hotel-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 3.5vw, 54px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .hotel-headline em { font-style: italic; color: var(--gold); }
+
+    .hotel-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 40px;
+    }
+
+    .amenities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 44px;
+    }
+
+    .amenity {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .amenity-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .amenity-icon svg { color: var(--gold); }
+
+    .amenity-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .amenity-desc {
+      font-size: 12px;
+      color: var(--stone);
+      font-weight: 300;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: var(--ink);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      width: fit-content;
+      transition: all 0.3s;
+    }
+    .btn-dark:hover { background: var(--ink-mid); transform: translateY(-2px); }
+
+    /* ══════════════════════════
+       GALLERY
+    ══════════════════════════ */
+    #gallery {
+      background: var(--ink);
+      padding: 120px 80px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(3, 220px);
+      gap: 4px;
+      margin-top: 60px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .gallery-item:hover svg { transform: scale(1.08); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,18,8,0.0);
+      transition: background 0.3s;
+    }
+    .gallery-item:hover::after { background: rgba(201,168,76,0.1); }
+
+    .g1 { grid-column: 1 / 6; grid-row: 1 / 3; }
+    .g2 { grid-column: 6 / 9; grid-row: 1 / 2; }
+    .g3 { grid-column: 9 / 13; grid-row: 1 / 2; }
+    .g4 { grid-column: 6 / 9; grid-row: 2 / 3; }
+    .g5 { grid-column: 9 / 13; grid-row: 2 / 3; }
+    .g6 { grid-column: 1 / 5; grid-row: 3 / 4; }
+    .g7 { grid-column: 5 / 9; grid-row: 3 / 4; }
+    .g8 { grid-column: 9 / 13; grid-row: 3 / 4; }
+
+    /* ══════════════════════════
+       TESTIMONIALS
+    ══════════════════════════ */
+    #testimonials {
+      background: #12080A;
+      padding: 120px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #testimonials::before {
+      content: '"';
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 400px;
+      color: rgba(201,168,76,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 4px;
+      padding: 40px;
+      transition: all 0.4s;
+    }
+    .testimonial-card:hover {
+      background: rgba(201,168,76,0.04);
+      border-color: rgba(201,168,76,0.25);
+      transform: translateY(-4px);
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+
+    .star-icon { color: var(--gold); font-size: 14px; }
+
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+
+    .testimonial-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.3);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .author-origin {
+      font-size: 11px;
+      color: rgba(245,239,224,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    /* ══════════════════════════
+       BOOKING / CONTACT
+    ══════════════════════════ */
+    #booking {
+      background: var(--cream);
+      color: var(--ink);
+      padding: 120px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .booking-info .section-eyebrow .eyebrow-label { color: var(--gold); }
+
+    .booking-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 3vw, 52px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .booking-headline em { font-style: italic; color: var(--gold); }
+
+    .booking-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 40px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(26,18,8,0.08);
+    }
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .contact-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    /* Booking form */
+    .booking-form-wrap {
+      background: var(--ink);
+      padding: 50px;
+      border-radius: 4px;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,239,224,0.4);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(245,239,224,0.1);
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-input::placeholder { color: rgba(245,239,224,0.25); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(201,168,76,0.5);
+    }
+    .form-select { cursor: pointer; appearance: none; }
+    .form-textarea { resize: none; height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* ══════════════════════════
+       FOOTER
+    ══════════════════════════ */
+    footer {
+      background: #08050A;
+      padding: 60px 80px 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(245,239,224,0.06);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(245,239,224,0.35);
+      max-width: 240px;
+      line-height: 1.7;
+    }
+
+    .footer-links-group {
+      display: flex;
+      gap: 60px;
+    }
+
+    .footer-col h4 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(245,239,224,0.4);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copyright {
+      font-size: 12px;
+      color: rgba(245,239,224,0.25);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245,239,224,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(245,239,224,0.35);
+      text-decoration: none;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ══════════════════════════
+       SCROLL ANIMATIONS
+    ══════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ══════════════════════════
+       RESPONSIVE
+    ══════════════════════════ */
+    @media (max-width: 1100px) {
+      nav, #hero-content, #intro, #experiences, #gallery, #booking, footer { padding-left: 40px; padding-right: 40px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      #hotel { grid-template-columns: 1fr; }
+      .hotel-content { padding: 60px 40px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      #booking { grid-template-columns: 1fr; gap: 40px; }
+      .footer-links-group { gap: 30px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #hero-content { padding: 0 24px 80px; }
+      #intro { flex-direction: column; padding: 60px 24px; }
+      .intro-stats { justify-content: center; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8 { grid-column: auto; grid-row: auto; }
+      .footer-top { flex-direction: column; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Sahar<span>Cappadocia</span></a>
+  <ul class="nav-links">
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#hotel">Cave Hotels</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Reserve Now</a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO — CINEMATIC SUNRISE
+══════════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- Sky -->
+  <div class="sky-layer" id="sky-base"></div>
+  <div class="sky-layer" id="haze"></div>
+
+  <!-- Stars -->
+  <div id="stars"></div>
+
+  <!-- Sun -->
+  <div id="sun-glow"></div>
+
+  <!-- Hot Air Balloons -->
+  <div class="balloon-wrap" style="left:12%;top:22%;animation-duration:9s;animation-delay:0s;opacity:0.95;">
+    <svg width="52" height="72" viewBox="0 0 52 72">
+      <ellipse cx="26" cy="30" rx="22" ry="27" fill="#E85D26"/>
+      <path d="M4 30 Q26 4 48 30" fill="rgba(255,220,100,0.6)"/>
+      <line x1="18" y1="56" x2="16" y2="66" stroke="#8B6914" stroke-width="1.2"/>
+      <line x1="34" y1="56" x2="36" y2="66" stroke="#8B6914" stroke-width="1.2"/>
+      <rect x="13" y="65" width="26" height="9" rx="2" fill="#6B4E20"/>
+      <path d="M4 30 Q26 56 48 30 Q26 20 4 30Z" fill="rgba(255,140,0,0.4)"/>
+      <line x1="26" y1="3" x2="26" y2="57" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <div class="balloon-wrap" style="left:28%;top:14%;animation-duration:11s;animation-delay:1s;">
+    <svg width="44" height="62" viewBox="0 0 44 62">
+      <ellipse cx="22" cy="26" rx="18" ry="22" fill="#2D6FA4"/>
+      <path d="M4 26 Q22 4 40 26" fill="rgba(255,200,50,0.5)"/>
+      <path d="M4 26 Q22 46 40 26 Q22 18 4 26Z" fill="rgba(255,100,50,0.35)"/>
+      <line x1="15" y1="47" x2="13" y2="56" stroke="#5A3E10" stroke-width="1"/>
+      <line x1="29" y1="47" x2="31" y2="56" stroke="#5A3E10" stroke-width="1"/>
+      <rect x="10" y="56" width="24" height="8" rx="2" fill="#4A3010"/>
+    </svg>
+  </div>
+
+  <div class="balloon-wrap" style="left:52%;top:10%;animation-duration:13s;animation-delay:2s;opacity:0.9;">
+    <svg width="62" height="84" viewBox="0 0 62 84">
+      <ellipse cx="31" cy="34" rx="27" ry="32" fill="#C9293C"/>
+      <path d="M4 34 Q31 4 58 34" fill="rgba(255,230,80,0.55)"/>
+      <path d="M4 34 Q31 64 58 34 Q31 22 4 34Z" fill="rgba(200,60,10,0.35)"/>
+      <line x1="21" y1="65" x2="19" y2="76" stroke="#7A5015" stroke-width="1.2"/>
+      <line x1="41" y1="65" x2="43" y2="76" stroke="#7A5015" stroke-width="1.2"/>
+      <rect x="16" y="76" width="30" height="10" rx="2" fill="#5A3C12"/>
+      <ellipse cx="31" cy="34" rx="27" ry="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="balloon-wrap" style="left:70%;top:18%;animation-duration:10s;animation-delay:0.5s;">
+    <svg width="46" height="64" viewBox="0 0 46 64">
+      <ellipse cx="23" cy="28" rx="20" ry="24" fill="#6B3A8F"/>
+      <path d="M3 28 Q23 6 43 28" fill="rgba(255,180,50,0.5)"/>
+      <path d="M3 28 Q23 50 43 28 Q23 20 3 28Z" fill="rgba(100,180,100,0.4)"/>
+      <line x1="16" y1="51" x2="14" y2="60" stroke="#5A3E10" stroke-width="1"/>
+      <line x1="30" y1="51" x2="32" y2="60" stroke="#5A3E10" stroke-width="1"/>
+      <rect x="11" y="60" width="24" height="8" rx="2" fill="#40280A"/>
+    </svg>
+  </div>
+
+  <div class="balloon-wrap" style="left:85%;top:25%;animation-duration:8s;animation-delay:3s;opacity:0.7;">
+    <svg width="38" height="54" viewBox="0 0 38 54">
+      <ellipse cx="19" cy="22" rx="16" ry="19" fill="#3D8A4F"/>
+      <path d="M3 22 Q19 4 35 22" fill="rgba(255,200,80,0.5)"/>
+      <path d="M3 22 Q19 40 35 22 Q19 14 3 22Z" fill="rgba(255,120,30,0.35)"/>
+      <line x1="13" y1="40" x2="12" y2="48" stroke="#5A3E10" stroke-width="0.9"/>
+      <line x1="25" y1="40" x2="26" y2="48" stroke="#5A3E10" stroke-width="0.9"/>
+      <rect x="9" y="48" width="20" height="7" rx="1.5" fill="#40280A"/>
+    </svg>
+  </div>
+
+  <!-- Tiny far balloons -->
+  <div class="balloon-wrap" style="left:38%;top:8%;animation-duration:14s;animation-delay:4s;opacity:0.45;">
+    <svg width="24" height="34" viewBox="0 0 24 34"><ellipse cx="12" cy="14" rx="10" ry="12" fill="#C9293C"/><rect x="7" y="25" width="10" height="5" rx="1" fill="#5A3C12"/></svg>
+  </div>
+  <div class="balloon-wrap" style="left:60%;top:6%;animation-duration:16s;animation-delay:2s;opacity:0.35;">
+    <svg width="18" height="26" viewBox="0 0 18 26"><ellipse cx="9" cy="10" rx="7" ry="9" fill="#2D6FA4"/><rect x="5" y="18" width="8" height="4" rx="1" fill="#40280A"/></svg>
+  </div>
+
+  <!-- Cappadocia Landscape SVG -->
+  <div id="landscape">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Valley gradient -->
+        <linearGradient id="valleyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5C3A1A"/>
+          <stop offset="60%" stop-color="#3A2210"/>
+          <stop offset="100%" stop-color="#1A0E08"/>
+        </linearGradient>
+        <!-- Fairy chimney gradient -->
+        <linearGradient id="chimneyGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#8B6040"/>
+          <stop offset="50%" stop-color="#C4946A"/>
+          <stop offset="100%" stop-color="#6B4828"/>
+        </linearGradient>
+        <!-- Rock lit by sunrise -->
+        <linearGradient id="rockLit" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#E8A060"/>
+          <stop offset="40%" stop-color="#C47840"/>
+          <stop offset="100%" stop-color="#4A2E10"/>
+        </linearGradient>
+        <!-- Foreground dark -->
+        <linearGradient id="fgGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2A1608"/>
+          <stop offset="100%" stop-color="#0A0604"/>
+        </linearGradient>
+        <!-- Warm glow filter -->
+        <filter id="warmGlow">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background mountains far -->
+      <path d="M0 380 Q120 280 220 310 Q340 260 440 300 Q560 250 660 290 Q780 240 880 280 Q1000 250 1100 285 Q1220 255 1320 280 L1440 290 L1440 600 L0 600Z"
+            fill="#3A1E0A" opacity="0.7"/>
+
+      <!-- Mid-ground rocky plateau -->
+      <path d="M0 420 Q80 370 160 390 Q240 360 310 380 Q390 350 460 370 Q540 340 620 360 Q700 330 780 355 Q860 330 940 350 Q1020 320 1100 345 Q1180 325 1260 340 Q1340 320 1440 335 L1440 600 L0 600Z"
+            fill="url(#valleyGrad)"/>
+
+      <!-- Fairy chimneys — background layer -->
+      <g opacity="0.6" fill="url(#chimneyGrad)">
+        <!-- Chimney 1 -->
+        <path d="M80 370 Q78 350 82 350 Q88 320 90 310 Q92 298 95 295 Q98 298 100 310 Q102 320 108 350 Q112 350 110 370Z"/>
+        <ellipse cx="95" cy="295" rx="8" ry="10" fill="#A07050"/>
+
+        <!-- Chimney 2 -->
+        <path d="M200 355 Q198 335 202 335 Q208 305 210 292 Q212 278 216 275 Q220 278 222 292 Q224 305 230 335 Q234 335 232 355Z"/>
+        <ellipse cx="216" cy="275" rx="9" ry="11" fill="#B08060"/>
+
+        <!-- Chimney 3 -->
+        <path d="M380 340 Q378 315 382 315 Q388 280 390 264 Q392 248 397 244 Q402 248 404 264 Q406 280 412 315 Q416 315 414 340Z"/>
+        <ellipse cx="397" cy="244" rx="11" ry="13" fill="#C09070"/>
+
+        <!-- Chimney 4 cluster -->
+        <path d="M520 330 Q518 308 522 308 Q527 276 529 262 Q531 248 535 245 Q539 248 541 262 Q543 276 548 308 Q552 308 550 330Z"/>
+        <ellipse cx="535" cy="245" rx="10" ry="12" fill="#B88055"/>
+        <path d="M545 335 Q543 318 547 318 Q552 295 554 284 Q556 273 559 270 Q562 273 564 284 Q566 295 571 318 Q575 318 573 335Z"/>
+        <ellipse cx="559" cy="270" rx="8" ry="10" fill="#A07050"/>
+
+        <!-- Chimney 5 -->
+        <path d="M720 325 Q718 300 722 300 Q728 268 730 253 Q732 238 737 234 Q742 238 744 253 Q746 268 752 300 Q756 300 754 325Z"/>
+        <ellipse cx="737" cy="234" rx="11" ry="14" fill="#C09070"/>
+
+        <!-- Chimney 6 -->
+        <path d="M900 315 Q898 292 902 292 Q908 262 910 248 Q912 234 916 231 Q920 234 922 248 Q924 262 930 292 Q934 292 932 315Z"/>
+        <ellipse cx="916" cy="231" rx="10" ry="13" fill="#B88055"/>
+
+        <!-- Chimney 7 -->
+        <path d="M1060 320 Q1058 298 1062 298 Q1068 268 1070 254 Q1072 240 1076 237 Q1080 240 1082 254 Q1084 268 1090 298 Q1094 298 1092 320Z"/>
+        <ellipse cx="1076" cy="237" rx="10" ry="12" fill="#A87848"/>
+
+        <!-- Chimney 8 -->
+        <path d="M1240 308 Q1238 285 1242 285 Q1248 255 1250 241 Q1252 227 1256 224 Q1260 227 1262 241 Q1264 255 1270 285 Q1274 285 1272 308Z"/>
+        <ellipse cx="1256" cy="224" rx="10" ry="12" fill="#B88055"/>
+
+        <!-- Chimney 9 -->
+        <path d="M1380 318 Q1378 296 1382 296 Q1388 266 1390 252 Q1392 238 1396 235 Q1400 238 1402 252 Q1404 266 1410 296 Q1414 296 1412 318Z"/>
+        <ellipse cx="1396" cy="235" rx="10" ry="12" fill="#A07050"/>
+      </g>
+
+      <!-- Cave hotel carved into cliff — center highlight -->
+      <g filter="url(#warmGlow)">
+        <!-- Large cliff mass with warm sunrise light -->
+        <path d="M580 600 L580 310 Q620 290 660 280 Q700 270 740 275 Q780 270 820 285 Q850 295 860 600Z"
+              fill="url(#rockLit)" opacity="0.9"/>
+
+        <!-- Cave hotel windows -->
+        <ellipse cx="630" cy="360" rx="14" ry="10" fill="#F5C87A" opacity="0.9"/>
+        <ellipse cx="670" cy="340" rx="12" ry="9" fill="#F5C87A" opacity="0.85"/>
+        <ellipse cx="710" cy="328" rx="13" ry="10" fill="#FFDC80" opacity="0.9"/>
+        <ellipse cx="750" cy="340" rx="12" ry="9" fill="#F5C87A" opacity="0.8"/>
+        <ellipse cx="790" cy="360" rx="11" ry="8" fill="#E8B860" opacity="0.75"/>
+
+        <!-- Lower row -->
+        <ellipse cx="615" cy="420" rx="12" ry="9" fill="#D4A040" opacity="0.7"/>
+        <ellipse cx="650" cy="400" rx="14" ry="10" fill="#EDB84A" opacity="0.75"/>
+        <ellipse cx="695" cy="390" rx="15" ry="11" fill="#F5C87A" opacity="0.8"/>
+        <ellipse cx="740" cy="400" rx="13" ry="10" fill="#EDB84A" opacity="0.75"/>
+        <ellipse cx="780" cy="418" rx="11" ry="8" fill="#D4A040" opacity="0.7"/>
+
+        <!-- Terrace lines -->
+        <path d="M605 435 Q720 415 840 430" stroke="rgba(210,160,80,0.3)" stroke-width="1" fill="none"/>
+        <path d="M610 465 Q720 445 835 460" stroke="rgba(210,160,80,0.2)" stroke-width="1" fill="none"/>
+      </g>
+
+      <!-- Foreground dark valley -->
+      <path d="M0 500 Q180 460 360 480 Q540 500 720 470 Q900 445 1080 468 Q1260 488 1440 475 L1440 600 L0 600Z"
+            fill="url(#fgGrad)"/>
+
+      <!-- Foreground rocks silhouette -->
+      <path d="M0 580 Q60 540 130 555 Q200 520 270 540 Q320 525 370 545 L370 600 L0 600Z" fill="#08050A"/>
+      <path d="M1100 570 Q1180 535 1260 550 Q1340 520 1400 540 L1440 535 L1440 600 L1100 600Z" fill="#08050A"/>
+
+      <!-- Ground mist -->
+      <path d="M0 520 Q360 490 720 500 Q1080 510 1440 490 L1440 540 Q1080 555 720 545 Q360 535 0 550Z"
+            fill="rgba(255,180,80,0.06)"/>
+    </svg>
+  </div>
+
+  <!-- Hero text -->
+  <div id="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Cappadocia, Türkiye &nbsp;·&nbsp; Est. 2009</span>
+    </div>
+    <h1 class="hero-title">
+      Where the Sky<br>Meets <em>Ancient Stone</em>
+    </h1>
+    <p class="hero-subtitle">
+      Float at sunrise above millennia-old valleys. Sleep in a cave carved by time. Let Cappadocia rewrite your sense of wonder.
+    </p>
+    <div class="hero-actions">
+      <a href="#experiences" class="btn-primary">Explore Journeys</a>
+      <a href="#gallery" class="btn-ghost">
+        <div class="play-circle">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0L10 6L0 12V0Z"/></svg>
+        </div>
+        View the Experience
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════
+     INTRO STRIP
+══════════════════════════════════════════ -->
+<section id="intro">
+  <div class="intro-text reveal">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Our Story</span>
+    </div>
+    <h2 class="intro-headline">
+      Fifteen years crafting<br><em>unforgettable</em> journeys
+    </h2>
+    <p class="intro-body">
+      SaharCappadocia was born from a deep love for this extraordinary landscape — where volcanic formations become fairy chimneys, where underground cities stretch for miles, and where every dawn transforms the sky into a living canvas. We curate exclusive, intimate experiences that connect you with the soul of this ancient land.
+    </p>
+  </div>
+  <div class="intro-stats reveal reveal-delay-2">
+    <div class="stat">
+      <div class="stat-num">4,800+</div>
+      <div class="stat-label">Journeys Crafted</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Guest Satisfaction</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EXPERIENCES / TOUR PACKAGES
+══════════════════════════════════════════ -->
+<section id="experiences">
+  <div class="section-header reveal">
+    <div class="section-eyebrow" style="justify-content:center;">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Curated Journeys</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title">Experiences That <em>Transcend</em></h2>
+    <p class="section-sub">Each journey is a carefully composed masterpiece — intimate, immersive, and impossible to replicate.</p>
+  </div>
+
+  <div class="packages-grid reveal reveal-delay-1">
+
+    <!-- Package 1 — Balloon at Sunrise -->
+    <div class="package-card">
+      <div class="package-visual">
+        <svg class="pkg-scene" viewBox="0 0 400 530" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0D0820"/>
+              <stop offset="40%" stop-color="#7B3A6E"/>
+              <stop offset="70%" stop-color="#E8713A"/>
+              <stop offset="100%" stop-color="#FDCB7A"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="530" fill="url(#sky1)"/>
+          <!-- Sun -->
+          <circle cx="200" cy="300" r="55" fill="#FFF0C0" opacity="0.9"/>
+          <circle cx="200" cy="300" r="80" fill="rgba(255,200,80,0.25)"/>
+          <circle cx="200" cy="300" r="110" fill="rgba(255,150,50,0.12)"/>
+          <!-- Landscape -->
+          <path d="M0 400 Q100 360 200 375 Q300 360 400 380 L400 530 L0 530Z" fill="#3A1A08"/>
+          <path d="M0 450 Q200 420 400 440 L400 530 L0 530Z" fill="#1A0A04"/>
+          <!-- Chimneys -->
+          <path d="M60 400 Q58 370 66 360 Q70 350 74 360 Q80 370 78 400Z" fill="#7B4A20"/>
+          <ellipse cx="70" cy="350" rx="8" ry="10" fill="#9B6030"/>
+          <path d="M160 390 Q158 355 167 342 Q171 330 176 342 Q182 355 180 390Z" fill="#8B5525"/>
+          <ellipse cx="171" cy="330" rx="10" ry="13" fill="#AB7035"/>
+          <path d="M280 385 Q278 352 287 338 Q292 326 298 338 Q304 352 302 385Z" fill="#7B4A20"/>
+          <ellipse cx="291" cy="326" rx="10" ry="12" fill="#9B6030"/>
+          <path d="M340 395 Q338 365 346 352 Q350 342 355 352 Q360 365 358 395Z" fill="#8B5525"/>
+          <ellipse cx="350" cy="342" rx="9" ry="11" fill="#AB7035"/>
+          <!-- Balloons -->
+          <ellipse cx="130" cy="200" rx="28" ry="36" fill="#C9293C"/>
+          <path d="M102 200 Q130 170 158 200" fill="rgba(255,220,80,0.5)"/>
+          <rect x="118" y="234" width="24" height="10" rx="2" fill="#5A3C12"/>
+          <ellipse cx="260" cy="160" rx="22" ry="28" fill="#2D6FA4"/>
+          <path d="M238 160 Q260 136 282 160" fill="rgba(255,200,60,0.5)"/>
+          <rect x="249" y="186" width="22" height="9" rx="2" fill="#3A2810"/>
+          <ellipse cx="310" cy="210" rx="16" ry="20" fill="#6B3A8F"/>
+          <rect x="302" y="228" width="16" height="7" rx="1" fill="#3A2810"/>
+        </svg>
+        <div class="package-overlay">
+          <span class="pkg-tag">Most Popular</span>
+          <h3 class="pkg-title">Dawn Balloon Voyage</h3>
+          <p class="pkg-desc">Rise before the world wakes. Drift silently over fairy chimneys and volcanic valleys as the sun paints everything gold.</p>
+          <div class="pkg-price-row">
+            <div class="pkg-price">€ 480 <span>/ person</span></div>
+            <div class="pkg-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package 2 — Underground City -->
+    <div class="package-card">
+      <div class="package-visual">
+        <svg class="pkg-scene" viewBox="0 0 400 530" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="torchGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFD070" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </defs>
+          <!-- Dark cave wall -->
+          <rect width="400" height="530" fill="#0D0806"/>
+          <!-- Stone texture -->
+          <path d="M0 0 Q80 20 140 10 Q220 0 310 15 Q370 5 400 0 L400 530 L0 530Z" fill="#180E08"/>
+          <!-- Cave tunnels -->
+          <ellipse cx="200" cy="265" rx="90" ry="140" fill="#0A0503"/>
+          <ellipse cx="200" cy="265" rx="70" ry="110" fill="#060302"/>
+          <!-- Torch glow points -->
+          <circle cx="120" cy="180" r="50" fill="url(#torchGlow)" opacity="0.7"/>
+          <circle cx="280" cy="180" r="50" fill="url(#torchGlow)" opacity="0.7"/>
+          <circle cx="200" cy="390" r="60" fill="url(#torchGlow)" opacity="0.5"/>
+          <!-- Stone arch -->
+          <path d="M60 530 L60 220 Q200 120 340 220 L340 530" fill="none" stroke="#5C3A1A" stroke-width="4"/>
+          <path d="M90 530 L90 240 Q200 155 310 240 L310 530" fill="none" stroke="#4A2E12" stroke-width="2"/>
+          <!-- Carved niches -->
+          <ellipse cx="110" cy="300" rx="20" ry="28" fill="#1A0D06"/>
+          <ellipse cx="290" cy="300" rx="20" ry="28" fill="#1A0D06"/>
+          <ellipse cx="155" cy="420" rx="16" ry="22" fill="#150A04"/>
+          <ellipse cx="245" cy="420" rx="16" ry="22" fill="#150A04"/>
+          <!-- Torch flames -->
+          <ellipse cx="118" cy="172" rx="6" ry="10" fill="#FF8C20" opacity="0.9"/>
+          <ellipse cx="118" cy="168" rx="4" ry="7" fill="#FFCC60"/>
+          <ellipse cx="282" cy="172" rx="6" ry="10" fill="#FF8C20" opacity="0.9"/>
+          <ellipse cx="282" cy="168" rx="4" ry="7" fill="#FFCC60"/>
+          <!-- People silhouette -->
+          <ellipse cx="200" cy="480" rx="8" ry="18" fill="#0F0804"/>
+          <circle cx="200" cy="458" r="7" fill="#0F0804"/>
+          <ellipse cx="220" cy="484" rx="6" ry="15" fill="#0F0804"/>
+          <circle cx="220" cy="466" r="6" fill="#0F0804"/>
+        </svg>
+        <div class="package-overlay">
+          <span class="pkg-tag">Explorer</span>
+          <h3 class="pkg-title">Underground Kingdoms</h3>
+          <p class="pkg-desc">Descend into Derinkuyu and Kaymaklı — ancient subterranean cities that sheltered entire civilizations from invaders.</p>
+          <div class="pkg-price-row">
+            <div class="pkg-price">€ 220 <span>/ person</span></div>
+            <div class="pkg-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package 3 — Private Valley Trek -->
+    <div class="package-card">
+      <div class="package-visual">
+        <svg class="pkg-scene" viewBox="0 0 400 530" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1A3050"/>
+              <stop offset="50%" stop-color="#4A6080"/>
+              <stop offset="100%" stop-color="#8A9EB0"/>
+            </linearGradient>
+            <linearGradient id="valley3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C4845A"/>
+              <stop offset="100%" stop-color="#5A2A10"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="530" fill="url(#sky3)"/>
+          <!-- Moon/star atmosphere -->
+          <circle cx="320" cy="60" r="20" fill="rgba(255,240,200,0.5)"/>
+          <circle cx="320" cy="60" r="30" fill="rgba(255,240,200,0.1)"/>
+          <!-- Stars -->
+          <circle cx="50" cy="40" r="1.5" fill="white" opacity="0.8"/>
+          <circle cx="100" cy="25" r="1" fill="white" opacity="0.6"/>
+          <circle cx="180" cy="15" r="2" fill="white" opacity="0.7"/>
+          <circle cx="250" cy="50" r="1" fill="white" opacity="0.5"/>
+          <circle cx="370" cy="30" r="1.5" fill="white" opacity="0.8"/>
+          <!-- Rose Valley rock formations -->
+          <path d="M0 530 L0 280 Q40 230 80 250 Q110 220 140 240 Q170 200 200 215 Q230 190 260 210 Q290 180 330 200 Q370 175 400 190 L400 530Z" fill="url(#valley3)"/>
+          <!-- Fairy chimney clusters -->
+          <path d="M60 280 Q58 248 66 234 Q70 220 74 234 Q80 248 78 280Z" fill="#9B6840"/>
+          <ellipse cx="70" cy="220" rx="9" ry="12" fill="#C4845A"/>
+          <path d="M140 260 Q138 224 148 208 Q153 194 158 208 Q164 224 162 260Z" fill="#AB7040"/>
+          <ellipse cx="152" cy="194" rx="11" ry="14" fill="#D4905A"/>
+          <path d="M200 240 Q198 200 210 182 Q215 168 221 182 Q228 200 226 240Z" fill="#9B6840"/>
+          <ellipse cx="213" cy="168" rx="13" ry="16" fill="#C4845A"/>
+          <path d="M280 235 Q278 198 288 182 Q293 168 299 182 Q306 198 304 235Z" fill="#AB7040"/>
+          <ellipse cx="292" cy="168" rx="12" ry="15" fill="#D4905A"/>
+          <path d="M360 248 Q358 214 367 200 Q371 188 377 200 Q382 214 380 248Z" fill="#9B6840"/>
+          <ellipse cx="370" cy="188" rx="10" ry="13" fill="#C4845A"/>
+          <!-- Hiker silhouette -->
+          <ellipse cx="200" cy="440" rx="6" ry="15" fill="#1A0A04" opacity="0.8"/>
+          <circle cx="200" cy="422" r="7" fill="#1A0A04" opacity="0.8"/>
+          <!-- Walking stick -->
+          <line x1="207" y1="428" x2="218" y2="455" stroke="#2A1208" stroke-width="2" opacity="0.8"/>
+          <!-- Path -->
+          <path d="M0 480 Q100 460 200 470 Q300 455 400 465" stroke="rgba(210,150,80,0.2)" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="package-overlay">
+          <span class="pkg-tag">Private</span>
+          <h3 class="pkg-title">Rose Valley at Twilight</h3>
+          <p class="pkg-desc">A private guided trek through the rose-hued formations of Güllüdere Valley as dusk falls and the stone glows crimson.</p>
+          <div class="pkg-price-row">
+            <div class="pkg-price">€ 340 <span>/ person</span></div>
+            <div class="pkg-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CAVE HOTEL LUXURY
+══════════════════════════════════════════ -->
+<section id="hotel">
+  <div class="hotel-visual">
+    <svg id="hotel-scene" viewBox="0 0 720 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#040210"/>
+          <stop offset="60%" stop-color="#0A0520"/>
+          <stop offset="100%" stop-color="#1A1030"/>
+        </linearGradient>
+        <linearGradient id="cliffGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#4A2810"/>
+          <stop offset="50%" stop-color="#7A4820"/>
+          <stop offset="100%" stop-color="#3A1E08"/>
+        </linearGradient>
+        <radialGradient id="windowGlow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFDC70"/>
+          <stop offset="60%" stop-color="#FFB030" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFAE8"/>
+          <stop offset="40%" stop-color="rgba(255,250,200,0.3)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Night sky -->
+      <rect width="720" height="700" fill="url(#nightSky)"/>
+
+      <!-- Stars -->
+      <circle cx="80" cy="50" r="1.5" fill="white" opacity="0.8"/>
+      <circle cx="150" cy="30" r="1" fill="white" opacity="0.6"/>
+      <circle cx="240" cy="60" r="1.5" fill="white" opacity="0.7"/>
+      <circle cx="320" cy="25" r="1" fill="white" opacity="0.5"/>
+      <circle cx="420" cy="45" r="2" fill="white" opacity="0.8"/>
+      <circle cx="500" cy="20" r="1" fill="white" opacity="0.6"/>
+      <circle cx="580" cy="55" r="1.5" fill="white" opacity="0.7"/>
+      <circle cx="650" cy="35" r="1" fill="white" opacity="0.5"/>
+      <circle cx="690" cy="80" r="1.5" fill="white" opacity="0.6"/>
+      <circle cx="35" cy="110" r="1" fill="white" opacity="0.5"/>
+      <circle cx="120" cy="95" r="1.5" fill="white" opacity="0.4"/>
+      <circle cx="480" cy="70" r="1" fill="white" opacity="0.7"/>
+      <circle cx="560" cy="100" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="340" cy="85" r="1" fill="white" opacity="0.6"/>
+      <circle cx="620" cy="15" r="1" fill="white" opacity="0.8"/>
+
+      <!-- Milky way suggestion -->
+      <ellipse cx="360" cy="120" rx="300" ry="30" fill="rgba(180,180,255,0.04)" transform="rotate(-20, 360, 120)"/>
+
+      <!-- Moon -->
+      <circle cx="580" cy="90" r="40" fill="url(#moonGlow)"/>
+      <circle cx="580" cy="90" r="28" fill="#FFFAE0" opacity="0.9"/>
+      <circle cx="572" cy="84" r="22" fill="#FFF5C0"/>
+
+      <!-- Cliff / rock formation -->
+      <path d="M0 700 L0 200 Q60 160 120 180 Q160 150 200 170 Q240 140 280 155 Q330 130 370 148 Q420 125 460 142 Q510 120 560 138 Q610 118 660 135 Q700 125 720 130 L720 700Z"
+            fill="url(#cliffGrad)"/>
+
+      <!-- Rock texture / crevices -->
+      <path d="M0 300 Q100 280 200 290 Q300 270 400 285 Q500 265 600 278 Q660 268 720 275" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none"/>
+      <path d="M0 370 Q120 350 240 360 Q360 342 480 355 Q600 340 720 350" stroke="rgba(0,0,0,0.15)" stroke-width="1" fill="none"/>
+      <path d="M0 440 Q100 420 200 433 Q340 415 480 428 Q600 412 720 422" stroke="rgba(0,0,0,0.12)" stroke-width="1" fill="none"/>
+
+      <!-- Cave hotel windows — warm glow -->
+      <!-- Row 1 -->
+      <circle cx="130" cy="260" r="35" fill="url(#windowGlow1)" opacity="0.6"/>
+      <ellipse cx="130" cy="258" rx="16" ry="20" fill="#F8C850" opacity="0.9"/>
+      <ellipse cx="130" cy="258" rx="12" ry="16" fill="#FFE070"/>
+
+      <circle cx="240" cy="230" r="35" fill="url(#windowGlow1)" opacity="0.6"/>
+      <ellipse cx="240" cy="228" rx="18" ry="22" fill="#F8C850" opacity="0.85"/>
+      <ellipse cx="240" cy="228" rx="13" ry="17" fill="#FFE070"/>
+
+      <circle cx="360" cy="215" r="40" fill="url(#windowGlow1)" opacity="0.7"/>
+      <ellipse cx="360" cy="213" rx="20" ry="24" fill="#FFDC60" opacity="0.9"/>
+      <ellipse cx="360" cy="213" rx="14" ry="18" fill="#FFEF90"/>
+
+      <circle cx="480" cy="230" r="35" fill="url(#windowGlow1)" opacity="0.6"/>
+      <ellipse cx="480" cy="228" rx="18" ry="22" fill="#F8C850" opacity="0.85"/>
+      <ellipse cx="480" cy="228" rx="13" ry="17" fill="#FFE070"/>
+
+      <circle cx="590" cy="250" r="32" fill="url(#windowGlow1)" opacity="0.55"/>
+      <ellipse cx="590" cy="248" rx="16" ry="19" fill="#F0C040" opacity="0.8"/>
+      <ellipse cx="590" cy="248" rx="11" ry="14" fill="#FFD860"/>
+
+      <!-- Row 2 -->
+      <circle cx="90" cy="345" r="28" fill="url(#windowGlow1)" opacity="0.5"/>
+      <ellipse cx="90" cy="343" rx="14" ry="17" fill="#E8B440" opacity="0.75"/>
+
+      <circle cx="190" cy="315" r="32" fill="url(#windowGlow1)" opacity="0.55"/>
+      <ellipse cx="190" cy="313" rx="16" ry="20" fill="#F0C040" opacity="0.8"/>
+      <ellipse cx="190" cy="313" rx="11" ry="15" fill="#FFE070"/>
+
+      <circle cx="300" cy="300" r="35" fill="url(#windowGlow1)" opacity="0.6"/>
+      <ellipse cx="300" cy="298" rx="18" ry="22" fill="#F8C850" opacity="0.82"/>
+      <ellipse cx="300" cy="298" rx="13" ry="16" fill="#FFDC60"/>
+
+      <circle cx="420" cy="308" r="32" fill="url(#windowGlow1)" opacity="0.55"/>
+      <ellipse cx="420" cy="306" rx="15" ry="19" fill="#E8B440" opacity="0.8"/>
+
+      <circle cx="530" cy="328" r="28" fill="url(#windowGlow1)" opacity="0.5"/>
+      <ellipse cx="530" cy="326" rx="14" ry="17" fill="#E0A830" opacity="0.75"/>
+
+      <circle cx="640" cy="345" r="26" fill="url(#windowGlow1)" opacity="0.45"/>
+      <ellipse cx="640" cy="343" rx="12" ry="15" fill="#D89C28" opacity="0.7"/>
+
+      <!-- Terrace / balcony details -->
+      <path d="M60 380 Q120 372 180 376" stroke="rgba(200,160,60,0.3)" stroke-width="1.5" fill="none"/>
+      <path d="M210 360 Q285 352 355 357" stroke="rgba(200,160,60,0.3)" stroke-width="1.5" fill="none"/>
+      <path d="M380 368 Q450 360 520 365" stroke="rgba(200,160,60,0.28)" stroke-width="1.5" fill="none"/>
+      <path d="M550 382 Q620 374 700 378" stroke="rgba(200,160,60,0.25)" stroke-width="1.5" fill="none"/>
+
+      <!-- Foreground dark ground -->
+      <path d="M0 600 Q180 575 360 580 Q540 570 720 578 L720 700 L0 700Z" fill="#08050A"/>
+
+      <!-- Candle/lamp on terrace -->
+      <circle cx="200" cy="377" r="6" fill="#FFB030" opacity="0.9"/>
+      <circle cx="360" cy="358" r="6" fill="#FFB030" opacity="0.85"/>
+      <circle cx="520" cy="368" r="5" fill="#FFB030" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="hotel-content">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Cave Suites</span>
+    </div>
+    <h2 class="hotel-headline">
+      Sleep inside<br><em>living rock</em>
+    </h2>
+    <p class="hotel-body">
+      Our handpicked cave suites are carved directly into volcanic tuff — stone that has held the secrets of Byzantine monks, Silk Road merchants, and Hittite kings. Each room is a unique sculpture of nature, reimagined with every modern luxury. Lie in your bed and look up at 3,000 years of history above you.
+    </p>
+
+    <div class="amenities">
+      <div class="amenity">
+        <div class="amenity-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div>
+          <div class="amenity-label">Heritage Suite</div>
+          <div class="amenity-desc">Original carved cave walls, authentic Cappadocian textiles</div>
+        </div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <div class="amenity-label">Panoramic Terrace</div>
+          <div class="amenity-desc">Private terrace overlooking the valley for sunrise viewing</div>
+        </div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <div>
+          <div class="amenity-label">Butler Service</div>
+          <div class="amenity-desc">24/7 personal concierge and private dining arrangements</div>
+        </div>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <div>
+          <div class="amenity-label">Cave Spa & Hammam</div>
+          <div class="amenity-desc">Traditional Turkish hammam carved into the rock</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#booking" class="btn-dark">
+      Reserve a Suite
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     GALLERY
+══════════════════════════════════════════ -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <div class="section-eyebrow" style="justify-content:center;">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Visual Journey</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title">Through the <em>Lens</em></h2>
+    <p class="section-sub">Every frame a memory. Every image a reason to return.</p>
+  </div>
+
+  <div class="gallery-grid reveal reveal-delay-1">
+
+    <!-- G1: Large — Balloon panorama at sunrise -->
+    <div class="gallery-item g1">
+      <svg viewBox="0 0 500 440" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gs1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1A0A2E"/>
+            <stop offset="35%" stop-color="#8C3A60"/>
+            <stop offset="65%" stop-color="#E8713A"/>
+            <stop offset="100%" stop-color="#FDCB7A"/>
+          </linearGradient>
+        </defs>
+        <rect width="500" height="440" fill="url(#gs1)"/>
+        <circle cx="250" cy="270" r="70" fill="rgba(255,240,150,0.8)"/>
+        <circle cx="250" cy="270" r="100" fill="rgba(255,200,80,0.2)"/>
+        <!-- Many balloons -->
+        <ellipse cx="80" cy="150" rx="28" ry="36" fill="#C9293C"/>
+        <rect x="69" y="184" width="22" height="9" rx="2" fill="#4A2810"/>
+        <ellipse cx="160" cy="110" rx="22" ry="28" fill="#2D6FA4"/>
+        <rect x="151" y="136" width="18" height="7" rx="2" fill="#3A2810"/>
+        <ellipse cx="240" cy="90" rx="26" ry="34" fill="#E8A020"/>
+        <rect x="228" y="122" width="24" height="9" rx="2" fill="#5A3810"/>
+        <ellipse cx="330" cy="120" rx="20" ry="26" fill="#6B3A8F"/>
+        <rect x="320" y="144" width="20" height="8" rx="2" fill="#3A2010"/>
+        <ellipse cx="410" cy="100" rx="24" ry="30" fill="#3D8A4F"/>
+        <rect x="399" y="128" width="22" height="8" rx="2" fill="#3A2810"/>
+        <ellipse cx="460" cy="155" rx="18" ry="22" fill="#C93C3C"/>
+        <rect x="451" y="175" width="18" height="7" rx="2" fill="#4A2810"/>
+        <!-- Landscape -->
+        <path d="M0 360 Q125 320 250 335 Q375 320 500 340 L500 440 L0 440Z" fill="#2A1008"/>
+        <path d="M0 400 Q250 375 500 390 L500 440 L0 440Z" fill="#140804"/>
+      </svg>
+    </div>
+
+    <!-- G2: Fairy chimneys close -->
+    <div class="gallery-item g2">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gs2sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4A6898"/>
+            <stop offset="100%" stop-color="#8A9EC0"/>
+          </linearGradient>
+          <linearGradient id="gs2rock" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E8A878"/>
+            <stop offset="100%" stop-color="#A06040"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="220" fill="url(#gs2sky)"/>
+        <!-- Tall fairy chimneys -->
+        <path d="M40 220 L40 80 Q45 60 55 50 Q62 40 70 50 Q78 60 80 80 L80 220Z" fill="url(#gs2rock)"/>
+        <ellipse cx="60" cy="50" rx="22" ry="28" fill="#D4906A"/>
+        <ellipse cx="60" cy="44" rx="16" ry="12" fill="#B07050"/>
+        <!-- Crack/texture -->
+        <path d="M55 80 Q60 110 58 150" stroke="rgba(0,0,0,0.15)" stroke-width="1" fill="none"/>
+
+        <path d="M120 220 L120 60 Q126 38 138 28 Q147 18 156 28 Q165 38 170 60 L170 220Z" fill="url(#gs2rock)"/>
+        <ellipse cx="147" cy="28" rx="28" ry="32" fill="#C48060"/>
+        <ellipse cx="147" cy="20" rx="18" ry="14" fill="#A06040"/>
+
+        <path d="M200 220 L200 90 Q205 72 215 62 Q222 54 230 62 Q238 72 240 90 L240 220Z" fill="url(#gs2rock)"/>
+        <ellipse cx="220" cy="62" rx="22" ry="26" fill="#D4906A"/>
+        <ellipse cx="220" cy="56" rx="14" ry="10" fill="#B07050"/>
+
+        <path d="M265 220 L265 110 Q269 96 277 89 Q282 83 288 89 Q294 96 296 110 L296 220Z" fill="url(#gs2rock)"/>
+        <ellipse cx="281" cy="89" rx="18" ry="22" fill="#C48060"/>
+      </svg>
+    </div>
+
+    <!-- G3: Turkish breakfast spread -->
+    <div class="gallery-item g3">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="220" fill="#2A1A0A"/>
+        <!-- Table surface -->
+        <ellipse cx="150" cy="140" rx="140" ry="90" fill="#3A2210"/>
+        <!-- Plates and food -->
+        <ellipse cx="90" cy="130" rx="40" ry="35" fill="#F0E0C0"/>
+        <ellipse cx="90" cy="130" rx="32" ry="27" fill="#E8D0A0"/>
+        <ellipse cx="90" cy="128" rx="24" ry="20" fill="#D4A060"/>
+        <!-- Bread -->
+        <ellipse cx="180" cy="120" rx="38" ry="28" fill="#D4A060"/>
+        <ellipse cx="180" cy="116" rx="30" ry="22" fill="#E8C080"/>
+        <!-- Tea glasses -->
+        <rect x="130" y="155" width="18" height="28" rx="3" fill="rgba(200,50,30,0.7)"/>
+        <rect x="155" y="148" width="18" height="30" rx="3" fill="rgba(200,50,30,0.6)"/>
+        <!-- Olive bowl -->
+        <ellipse cx="80" cy="175" rx="30" ry="20" fill="#3A3020"/>
+        <ellipse cx="80" cy="172" rx="24" ry="16" fill="#2A2010"/>
+        <circle cx="72" cy="170" r="5" fill="#1A1A0A"/>
+        <circle cx="82" cy="168" r="5" fill="#1A1A0A"/>
+        <circle cx="90" cy="172" r="5" fill="#1A1A0A"/>
+        <!-- Honey jar -->
+        <rect x="210" y="148" width="28" height="36" rx="4" fill="rgba(220,160,20,0.8)"/>
+        <rect x="212" y="146" width="24" height="8" rx="2" fill="#8A6010"/>
+        <!-- Roses decoration -->
+        <circle cx="240" cy="100" r="12" fill="#C04060" opacity="0.8"/>
+        <circle cx="232" cy="108" r="8" fill="#A03050" opacity="0.7"/>
+        <circle cx="248" cy="108" r="8" fill="#C04060" opacity="0.7"/>
+        <!-- Warm light -->
+        <circle cx="150" cy="120" r="120" fill="rgba(255,180,60,0.06)"/>
+      </svg>
+    </div>
+
+    <!-- G4: Hot spring pool at cave hotel -->
+    <div class="gallery-item g4">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="poolGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#60C4D0"/>
+            <stop offset="100%" stop-color="#2A7080"/>
+          </radialGradient>
+        </defs>
+        <rect width="300" height="220" fill="#0A0806"/>
+        <!-- Cave walls -->
+        <path d="M0 0 Q50 30 100 20 Q150 0 200 25 Q250 5 300 15 L300 220 L0 220Z" fill="#3A2210"/>
+        <!-- Stone arch pool surround -->
+        <path d="M40 220 L40 120 Q150 60 260 120 L260 220Z" fill="#4A2A14"/>
+        <!-- Pool water -->
+        <ellipse cx="150" cy="155" rx="90" ry="55" fill="url(#poolGrad)" opacity="0.9"/>
+        <!-- Water shimmer -->
+        <path d="M100 150 Q120 145 140 150 Q160 155 180 150 Q200 145 210 150" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+        <path d="M90 165 Q115 160 140 165 Q165 170 190 165 Q210 160 220 165" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/>
+        <!-- Steam -->
+        <path d="M120 120 Q122 108 120 96" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+        <path d="M150 115 Q152 103 150 91" stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none"/>
+        <path d="M180 120 Q182 108 180 96" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+        <!-- Candles -->
+        <rect x="55" y="128" width="6" height="14" rx="1" fill="#F5E090"/>
+        <circle cx="58" cy="126" r="4" fill="#FFD070" opacity="0.9"/>
+        <rect x="238" y="128" width="6" height="14" rx="1" fill="#F5E090"/>
+        <circle cx="241" cy="126" r="4" fill="#FFD070" opacity="0.9"/>
+        <!-- Star visible through opening -->
+        <circle cx="150" cy="30" r="3" fill="white" opacity="0.8"/>
+        <circle cx="180" cy="20" r="2" fill="white" opacity="0.6"/>
+        <circle cx="120" cy="25" r="2" fill="white" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- G5: Whirling dervish -->
+    <div class="gallery-item g5">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="stageGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,200,80,0.3)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+        <rect width="300" height="220" fill="#08040A"/>
+        <!-- Stage glow -->
+        <circle cx="150" cy="140" r="100" fill="url(#stageGlow)"/>
+        <!-- Dervish robe spinning -->
+        <path d="M150 80 Q80 110 60 170 Q100 180 150 175 Q200 180 240 170 Q220 110 150 80Z" fill="white" opacity="0.9"/>
+        <path d="M150 80 Q100 100 90 160 Q120 168 150 165 Q180 168 210 160 Q200 100 150 80Z" fill="#F5F0E8"/>
+        <!-- Hat -->
+        <rect x="138" y="55" width="24" height="28" rx="2" fill="#D4B870"/>
+        <rect x="134" y="80" width="32" height="5" rx="1" fill="#C4A858"/>
+        <!-- Face suggestion -->
+        <circle cx="150" cy="72" r="10" fill="#D4A870"/>
+        <!-- Arms -->
+        <path d="M150 100 Q100 90 70 75" stroke="white" stroke-width="4" fill="none" opacity="0.8"/>
+        <path d="M150 100 Q200 90 230 75" stroke="white" stroke-width="4" fill="none" opacity="0.8"/>
+        <!-- Spin motion lines -->
+        <ellipse cx="150" cy="150" rx="88" ry="12" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <ellipse cx="150" cy="150" rx="75" ry="9" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- G6: Pottery workshop -->
+    <div class="gallery-item g6">
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="220" fill="#1A0C06"/>
+        <!-- Workshop warm light -->
+        <circle cx="200" cy="100" r="150" fill="rgba(255,150,60,0.08)"/>
+        <!-- Potter's wheel -->
+        <ellipse cx="160" cy="165" rx="50" ry="12" fill="#3A2010"/>
+        <ellipse cx="160" cy="160" rx="45" ry="10" fill="#4A2A14"/>
+        <!-- Clay pot being shaped -->
+        <path d="M140 155 Q130 130 135 100 Q140 80 160 78 Q180 80 185 100 Q190 130 180 155Z" fill="#B07050"/>
+        <path d="M135 105 Q160 92 185 105" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none"/>
+        <path d="M132 125 Q160 112 188 125" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+        <!-- Hands shaping -->
+        <ellipse cx="133" cy="120" rx="14" ry="8" fill="#C49060" opacity="0.8" transform="rotate(-15, 133, 120)"/>
+        <ellipse cx="188" cy="120" rx="14" ry="8" fill="#C49060" opacity="0.8" transform="rotate(15, 188, 120)"/>
+        <!-- Shelves with pots -->
+        <rect x="240" y="50" width="150" height="3" fill="#4A2A14"/>
+        <ellipse cx="260" cy="40" rx="16" ry="22" fill="#A06840"/>
+        <ellipse cx="260" cy="38" rx="10" ry="14" fill="#B07848"/>
+        <ellipse cx="295" cy="38" rx="12" ry="18" fill="#904A2A"/>
+        <ellipse cx="295" cy="36" rx="8" ry="12" fill="#A05A38"/>
+        <ellipse cx="328" cy="42" rx="16" ry="22" fill="#B06040"/>
+        <ellipse cx="360" cy="36" rx="10" ry="16" fill="#A05030"/>
+        <rect x="240" y="100" width="150" height="3" fill="#4A2A14"/>
+        <ellipse cx="255" cy="88" rx="14" ry="18" fill="#784028"/>
+        <ellipse cx="285" cy="85" rx="16" ry="22" fill="#986040"/>
+        <ellipse cx="318" cy="88" rx="13" ry="17" fill="#704030"/>
+        <ellipse cx="350" cy="86" rx="15" ry="20" fill="#885040"/>
+        <!-- Warm dust particles -->
+        <circle cx="200" cy="80" r="1.5" fill="rgba(255,180,80,0.4)"/>
+        <circle cx="180" cy="60" r="1" fill="rgba(255,180,80,0.3)"/>
+        <circle cx="220" cy="70" r="1" fill="rgba(255,180,80,0.35)"/>
+      </svg>
+    </div>
+
+    <!-- G7: Horseback in the valley -->
+    <div class="gallery-item g7">
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gs7sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5A8090"/>
+            <stop offset="100%" stop-color="#A0C4C8"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="220" fill="url(#gs7sky)"/>
+        <!-- Valley landscape -->
+        <path d="M0 180 Q50 150 100 160 Q150 140 200 155 Q250 135 300 150 Q350 130 400 145 L400 220 L0 220Z" fill="#8A5A30"/>
+        <path d="M0 200 Q100 185 200 190 Q300 178 400 185 L400 220 L0 220Z" fill="#5A3010"/>
+        <!-- Rock formations -->
+        <path d="M30 180 Q28 155 36 140 Q40 128 45 140 Q50 155 48 180Z" fill="#C4845A"/>
+        <ellipse cx="39" cy="128" rx="12" ry="16" fill="#D4946A"/>
+        <path d="M110 165 Q108 138 118 122 Q123 110 130 122 Q136 138 134 165Z" fill="#B87848"/>
+        <ellipse cx="122" cy="110" rx="15" ry="19" fill="#C4845A"/>
+        <path d="M320 155 Q318 126 330 108 Q336 94 344 108 Q352 126 350 155Z" fill="#C4845A"/>
+        <ellipse cx="336" cy="94" rx="18" ry="22" fill="#D4946A"/>
+        <path d="M370 160 Q368 138 378 124 Q382 114 388 124 Q394 138 392 160Z" fill="#B07040"/>
+        <ellipse cx="381" cy="114" rx="13" ry="17" fill="#C4845A"/>
+        <!-- Horse and rider silhouette -->
+        <g transform="translate(180, 150)">
+          <!-- Horse body -->
+          <ellipse cx="0" cy="25" rx="32" ry="16" fill="#1A0C06"/>
+          <!-- Horse head/neck -->
+          <path d="M20 18 Q30 8 35 0 Q38 -8 34 -12 Q28 -14 22 -8 Q18 -2 14 8Z" fill="#1A0C06"/>
+          <!-- Legs -->
+          <rect x="-22" y="38" width="6" height="20" rx="2" fill="#1A0C06"/>
+          <rect x="-8" y="40" width="6" height="18" rx="2" fill="#1A0C06"/>
+          <rect x="8" y="40" width="6" height="18" rx="2" fill="#1A0C06"/>
+          <rect x="22" y="38" width="6" height="20" rx="2" fill="#1A0C06"/>
+          <!-- Tail -->
+          <path d="M-30 22 Q-42 30 -38 44" stroke="#1A0C06" stroke-width="4" fill="none"/>
+          <!-- Rider -->
+          <ellipse cx="2" cy="8" rx="8" ry="10" fill="#1A0C06"/>
+          <circle cx="2" cy="-4" r="7" fill="#1A0C06"/>
+        </g>
+        <!-- Dust cloud -->
+        <ellipse cx="230" cy="210" rx="20" ry="6" fill="rgba(200,150,80,0.3)"/>
+      </svg>
+    </div>
+
+    <!-- G8: Stargazing at night -->
+    <div class="gallery-item g8">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="milkyway" cx="50%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="rgba(180,180,255,0.15)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+        <rect width="300" height="220" fill="#010106"/>
+        <!-- Milky way -->
+        <ellipse cx="150" cy="80" rx="200" ry="50" fill="url(#milkyway)" transform="rotate(-25, 150, 80)"/>
+        <!-- Stars - many -->
+        <circle cx="20" cy="15" r="1.5" fill="white" opacity="0.9"/>
+        <circle cx="50" cy="30" r="1" fill="white" opacity="0.7"/>
+        <circle cx="80" cy="10" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="110" cy="25" r="2" fill="white" opacity="0.9"/>
+        <circle cx="140" cy="8" r="1" fill="white" opacity="0.6"/>
+        <circle cx="170" cy="20" r="1.5" fill="white" opacity="0.85"/>
+        <circle cx="200" cy="5" r="1" fill="white" opacity="0.7"/>
+        <circle cx="230" cy="30" r="2" fill="white" opacity="0.8"/>
+        <circle cx="260" cy="15" r="1.5" fill="white" opacity="0.9"/>
+        <circle cx="285" cy="35" r="1" fill="white" opacity="0.6"/>
+        <circle cx="35" cy="55" r="1" fill="white" opacity="0.7"/>
+        <circle cx="65" cy="45" r="1.5" fill="white" opacity="0.5"/>
+        <circle cx="95" cy="60" r="1" fill="white" opacity="0.8"/>
+        <circle cx="125" cy="42" r="1.5" fill="white" opacity="0.6"/>
+        <circle cx="155" cy="58" r="1" fill="white" opacity="0.7"/>
+        <circle cx="185" cy="48" r="2" fill="white" opacity="0.9"/>
+        <circle cx="215" cy="62" r="1" fill="white" opacity="0.5"/>
+        <circle cx="245" cy="50" r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="275" cy="65" r="1" fill="white" opacity="0.6"/>
+        <circle cx="10" cy="80" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="40" cy="90" r="1" fill="white" opacity="0.5"/>
+        <circle cx="75" cy="75" r="1" fill="white" opacity="0.7"/>
+        <circle cx="300" cy="80" r="1.5" fill="white" opacity="0.6"/>
+        <!-- Shooting star -->
+        <path d="M220 40 L195 65" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="220" cy="40" r="2" fill="white" opacity="0.9"/>
+        <!-- Horizon/rock silhouettes -->
+        <path d="M0 170 Q40 145 80 155 Q120 140 160 150 Q200 135 240 148 Q280 138 300 143 L300 220 L0 220Z" fill="#0D0806"/>
+        <!-- Fairy chimney silhouettes -->
+        <path d="M50 170 Q48 148 56 135 Q60 124 65 135 Q70 148 68 170Z" fill="#060402"/>
+        <ellipse cx="59" cy="124" rx="12" ry="15" fill="#060402"/>
+        <path d="M160 155 Q158 130 168 116 Q173 104 179 116 Q185 130 183 155Z" fill="#060402"/>
+        <ellipse cx="172" cy="104" rx="14" ry="18" fill="#060402"/>
+        <path d="M250 148 Q248 126 257 113 Q261 103 267 113 Q272 126 270 148Z" fill="#060402"/>
+        <ellipse cx="261" cy="103" rx="12" ry="15" fill="#060402"/>
+        <!-- Person looking up -->
+        <ellipse cx="150" cy="185" rx="5" ry="13" fill="#08050A"/>
+        <circle cx="150" cy="170" r="6" fill="#08050A"/>
+        <!-- Telescope -->
+        <path d="M155 178 Q168 165 175 158" stroke="#0A0806" stroke-width="3" fill="none"/>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-eyebrow" style="justify-content:center;">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Guest Stories</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title">Words from <em>Our Travelers</em></h2>
+  </div>
+
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="stars">
+        <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+      </div>
+      <p class="testimonial-quote">"The balloon flight alone was worth crossing an ocean for. We floated over those ancient valleys in silence — just the hiss of the flame and the gasp of a thousand years below us. I sobbed at the beauty of it."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <svg width="42" height="42" viewBox="0 0 42 42"><rect width="42" height="42" fill="#3A2010"/><circle cx="21" cy="16" r="9" fill="#C49870"/><ellipse cx="21" cy="36" rx="14" ry="10" fill="#C49870"/></svg>
+        </div>
+        <div>
+          <div class="author-name">Isabelle Mercier</div>
+          <div class="author-origin">Paris, France &nbsp;·&nbsp; Oct 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="stars">
+        <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+      </div>
+      <p class="testimonial-quote">"Waking up in our cave suite, looking through the carved window at hot air balloons drifting past in the golden morning light — that image is burned into my soul. No hotel has ever made me feel so profoundly at peace."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <svg width="42" height="42" viewBox="0 0 42 42"><rect width="42" height="42" fill="#2A1A30"/><circle cx="21" cy="16" r="9" fill="#A08070"/><ellipse cx="21" cy="36" rx="14" ry="10" fill="#A08070"/></svg>
+        </div>
+        <div>
+          <div class="author-name">James & Priya Lawton</div>
+          <div class="author-origin">London, UK &nbsp;·&nbsp; Sep 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="stars">
+        <span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span>
+      </div>
+      <p class="testimonial-quote">"I've traveled to 60 countries. Cappadocia — and specifically what SaharCappadocia curated for us — sits in a category of its own. The underground city tour with our private guide felt like we were the first humans to discover it."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <svg width="42" height="42" viewBox="0 0 42 42"><rect width="42" height="42" fill="#102030"/><circle cx="21" cy="16" r="9" fill="#B09080"/><ellipse cx="21" cy="36" rx="14" ry="10" fill="#B09080"/></svg>
+        </div>
+        <div>
+          <div class="author-name">Kenji Watanabe</div>
+          <div class="author-origin">Tokyo, Japan &nbsp;·&nbsp; Aug 2024</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BOOKING / CONTACT
+══════════════════════════════════════════ -->
+<section id="booking">
+  <div class="booking-info reveal">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-label">Begin Your Journey</span>
+    </div>
+    <h2 class="booking-headline">
+      Reserve your<br><em>once-in-a-lifetime</em><br>experience
+    </h2>
+    <p class="booking-body">
+      Our travel designers will craft a completely bespoke itinerary around your vision, season, and pace. Whether it's a private honeymoon escape or a family adventure, every detail is arranged before you land.
+    </p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.1 12.1 19.79 19.79 0 011.05 3.54 2 2 0 013 1.36h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Call or WhatsApp</div>
+          <div class="contact-value">+90 384 271 4400</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email Us</div>
+          <div class="contact-value">hello@saharcappadocia.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Visit Us</div>
+          <div class="contact-value">Göreme, Nevşehir, Türkiye 50180</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-form-wrap reveal reveal-delay-2">
+    <h3 class="form-title">Request Your Journey</h3>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Elena">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Fontaine">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="you@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Arrival Date</label>
+          <input type="date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Party Size</label>
+          <select class="form-select form-input">
+            <option value="">Select...</option>
+            <option>1 — Solo traveler</option>
+            <option>2 — Couple</option>
+            <option>3–4 — Small group</option>
+            <option>5–8 — Family</option>
+            <option>8+ — Large group</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Experience Interest</label>
+        <select class="form-select form-input">
+          <option value="">Which journey calls to you?</option>
+          <option>Dawn Balloon Voyage</option>
+          <option>Underground Kingdoms</option>
+          <option>Rose Valley at Twilight</option>
+          <option>Luxury Cave Suite</option>
+          <option>Bespoke Private Itinerary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Vision (optional)</label>
+        <textarea class="form-textarea form-input" placeholder="Tell us what you're dreaming of..."></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submit-btn">Begin My Journey →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Sahar<span>Cappadocia</span></a>
+      <p class="footer-tagline">Crafting extraordinary journeys in the ancient heart of Türkiye since 2009.</p>
+    </div>
+    <div class="footer-links-group">
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <ul>
+          <li><a href="#">Balloon Voyages</a></li>
+          <li><a href="#">Underground Tours</a></li>
+          <li><a href="#">Valley Treks</a></li>
+          <li><a href="#">Horseback Rides</a></li>
+          <li><a href="#">Cultural Immersion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stay</h4>
+        <ul>
+          <li><a href="#">Cave Suites</a></li>
+          <li><a href="#">Heritage Rooms</a></li>
+          <li><a href="#">Cave Spa</a></li>
+          <li><a href="#">Fine Dining</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="copyright">© 2025 SaharCappadocia. All rights reserved. &nbsp;·&nbsp; Göreme, Nevşehir, Türkiye</p>
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="Instagram">IG</a>
+      <a href="#" class="social-link" aria-label="Facebook">FB</a>
+      <a href="#" class="social-link" aria-label="Pinterest">PT</a>
+      <a href="#" class="social-link" aria-label="YouTube">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══ Star generation ══ */
+(function() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    star.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --op:${Math.random()*0.7+0.3};
+      --dur:${Math.random()*3+2}s;
+      animation-delay:${Math.random()*4}s;
+    `;
+    container.appendChild(star);
+  }
+})();
+
+/* ══ Nav scroll effect ══ */
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+/* ══ Reveal on scroll ══ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ══ Form submit ══ */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Request Sent — We\'ll be in touch ✓';
+  btn.style.background = '#4A8A5A';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+}
+
+/* ══ Smooth hover parallax on hero ══ */
+document.getElementById('hero').addEventListener('mousemove', (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - 0.5;
+  const y = (e.clientY - rect.top) / rect.height - 0.5;
+  document.getElementById('sun-glow').style.transform = `translateX(calc(-50% + ${x * 20}px)) translateY(${y * 10}px)`;
+  document.querySelectorAll('.balloon-wrap').forEach((b, i) => {
+    const depth = 0.5 + (i * 0.15);
+    b.style.marginLeft = `${x * 18 * depth}px`;
+    b.style.marginTop = `${y * 8 * depth}px`;
+  });
+});
+</script>
+
+</body>
+</html>
