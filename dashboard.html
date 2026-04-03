@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — SaharCappadocia Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<div class="admin-layout">
+
+  <!-- ══════════════════════════════
+       SIDEBAR
+  ══════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+      <span class="sidebar-logo">Sahar<span>Capp.</span></span>
+      <div class="collapse-btn" id="collapse-btn" title="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Main</span>
+
+      <div class="nav-item active" data-page="dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span class="nav-label">Dashboard</span>
+      </div>
+
+      <div class="nav-item" data-page="bookings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="nav-label">Bookings</span>
+        <span class="nav-badge" id="pending-badge">3</span>
+      </div>
+
+      <div class="nav-item" data-page="customers">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <span class="nav-label">Customers</span>
+      </div>
+
+      <span class="nav-section-label">Analytics</span>
+
+      <div class="nav-item" data-page="analytics">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="nav-label">Analytics</span>
+      </div>
+
+      <div class="nav-item" data-page="messages">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span class="nav-label">Messages</span>
+        <span class="nav-badge" style="background:var(--blue)">5</span>
+      </div>
+
+      <div class="nav-item" onclick="window.open('sahar-cappadocia.html','_blank')" title="View live website">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span class="nav-label">View Website</span>
+      </div>
+
+      <span class="nav-section-label">System</span>
+
+      <div class="nav-item" data-page="settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span class="nav-label">Settings</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user" id="sidebar-user-btn">
+        <div class="sidebar-avatar" id="sidebar-avatar-initials">AM</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Admin User</div>
+          <div class="sidebar-user-role">Super Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ══════════════════════════════
+       MAIN
+  ══════════════════════════════ -->
+  <div class="main-wrap" id="main-wrap">
+
+    <!-- Top Navbar -->
+    <header class="topnav">
+      <div class="topnav-menu-btn" id="menu-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </div>
+
+      <div class="topnav-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search bookings, guests…" id="global-search">
+      </div>
+
+      <div class="topnav-actions">
+        <div class="icon-btn" title="Notifications" onclick="showToast('You have 3 new booking requests.', 'info')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="icon-btn" title="Help">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="topnav-divider"></div>
+        <div class="topnav-user" id="user-menu-btn">
+          <div class="topnav-avatar" id="topnav-avatar-initials">AM</div>
+          <div class="topnav-user-info">
+            <div class="topnav-user-name" id="topnav-user-name">Admin</div>
+            <div class="topnav-user-role">Super Admin</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);margin-left:4px"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="dropdown-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              My Profile
+            </div>
+            <div class="dropdown-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              Settings
+            </div>
+            <div class="dropdown-item" onclick="window.open('sahar-cappadocia.html','_blank')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              View Website
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item danger" id="logout-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Sign Out
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-title-group">
+          <div class="page-eyebrow" id="greeting-eyebrow">Good Morning</div>
+          <h1 class="page-title"><em id="greeting-name">Ahmed</em> — Overview</h1>
+          <p class="page-subtitle" id="today-date">Loading…</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline" onclick="exportData()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export
+          </button>
+          <button class="btn btn-gold" onclick="openModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Booking
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-icon stat-icon-gold">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" data-count="2847">0</div>
+          <div class="stat-footer">
+            <span class="stat-trend trend-up">↑ 12.4%</span>
+            <span class="stat-trend-label">vs last month</span>
+          </div>
+          <canvas class="sparkline-wrap" data-spark="bookings"></canvas>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-label">Total Revenue</div>
+            </div>
+            <div class="stat-icon stat-icon-green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" data-count="486200" data-prefix="€" data-format="currency">€0</div>
+          <div class="stat-footer">
+            <span class="stat-trend trend-up">↑ 8.7%</span>
+            <span class="stat-trend-label">vs last month</span>
+          </div>
+          <canvas class="sparkline-wrap" data-spark="revenue"></canvas>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-label">Active Guests</div>
+            </div>
+            <div class="stat-icon stat-icon-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" data-count="324">0</div>
+          <div class="stat-footer">
+            <span class="stat-trend trend-up">↑ 5.2%</span>
+            <span class="stat-trend-label">vs last week</span>
+          </div>
+          <canvas class="sparkline-wrap" data-spark="guests"></canvas>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-label">Pending Review</div>
+            </div>
+            <div class="stat-icon stat-icon-amber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" data-count="18">0</div>
+          <div class="stat-footer">
+            <span class="stat-trend trend-down">↓ 3</span>
+            <span class="stat-trend-label">since yesterday</span>
+          </div>
+          <canvas class="sparkline-wrap" data-spark="pending"></canvas>
+        </div>
+      </div>
+
+      <!-- Middle Row: Chart + Activity -->
+      <div class="mid-grid">
+
+        <!-- Revenue Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Revenue Overview</div>
+              <div class="card-subtitle">Last 7 days · EUR</div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block"></span>Revenue
+              </div>
+              <span class="card-action">View all →</span>
+            </div>
+          </div>
+          <div class="chart-area">
+            <svg id="revenue-chart" height="180" viewBox="0 0 700 180" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="chart-labels" id="chart-labels"></div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Recent Activity</div>
+            <span class="card-action">View all →</span>
+          </div>
+          <div class="activity-feed" id="activity-feed"></div>
+        </div>
+
+      </div>
+
+      <!-- Bookings Table -->
+      <div class="bookings-card">
+
+        <div class="bookings-toolbar">
+          <div class="bookings-toolbar-left">
+            <div class="filter-tabs" id="filter-tabs">
+              <div class="filter-tab active" data-filter="all">All</div>
+              <div class="filter-tab" data-filter="confirmed">Confirmed</div>
+              <div class="filter-tab" data-filter="pending">Pending</div>
+              <div class="filter-tab" data-filter="cancelled">Cancelled</div>
+            </div>
+            <div class="table-search">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="table-search" placeholder="Search bookings…">
+            </div>
+          </div>
+          <button class="btn btn-gold btn-sm" onclick="openModal()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Booking
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="id">Booking ID <span class="sort-icon">↕</span></th>
+                <th data-sort="guest">Guest <span class="sort-icon">↕</span></th>
+                <th data-sort="package">Package <span class="sort-icon">↕</span></th>
+                <th data-sort="date">Date <span class="sort-icon">↕</span></th>
+                <th data-sort="guests">Guests <span class="sort-icon">↕</span></th>
+                <th data-sort="status">Status <span class="sort-icon">↕</span></th>
+                <th data-sort="amount">Amount <span class="sort-icon">↕</span></th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-tbody"></tbody>
+          </table>
+          <div id="empty-state" class="empty-state" style="display:none">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-title">No bookings found</div>
+            <div class="empty-desc">Try adjusting your search or filter</div>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <div class="pagination-info" id="pagination-info">Showing 1–8 of 12</div>
+          <div class="pagination-controls" id="pagination-controls"></div>
+        </div>
+
+      </div>
+
+    </main>
+  </div><!-- /main-wrap -->
+</div><!-- /admin-layout -->
+
+<!-- ══════════════════════════════
+     ADD BOOKING MODAL
+══════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-title">New Booking</h2>
+      <div class="modal-close" id="modal-close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <form id="booking-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-name">Guest Full Name *</label>
+            <input type="text" id="f-name" placeholder="e.g. Isabella Chen" required>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email Address *</label>
+            <input type="email" id="f-email" placeholder="guest@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" placeholder="+1 234 567 8900">
+          </div>
+          <div class="form-group">
+            <label for="f-nationality">Nationality</label>
+            <input type="text" id="f-nationality" placeholder="e.g. French">
+          </div>
+          <div class="form-group full">
+            <label for="f-package">Tour Package *</label>
+            <select id="f-package" required>
+              <option value="" disabled selected>Select a package…</option>
+              <option value="Dawn Balloon Voyage" data-price="480">Dawn Balloon Voyage — €480/person</option>
+              <option value="Underground Kingdoms" data-price="220">Underground Kingdoms — €220/person</option>
+              <option value="Rose Valley at Twilight" data-price="340">Rose Valley at Twilight — €340/person</option>
+              <option value="Luxury Cave Suite — 3 nights" data-price="1200">Luxury Cave Suite — 3 nights — €1,200/night</option>
+              <option value="Luxury Cave Suite — 5 nights" data-price="1900">Luxury Cave Suite — 5 nights — €1,900/night</option>
+              <option value="Private Valley Trek" data-price="340">Private Valley Trek — €340/person</option>
+              <option value="Full Cappadocia Experience" data-price="1400">Full Cappadocia Experience (7 days) — €1,400/person</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-date">Travel Date *</label>
+            <input type="date" id="f-date" required>
+          </div>
+          <div class="form-group">
+            <label for="f-guests">Number of Guests *</label>
+            <input type="number" id="f-guests" min="1" max="20" value="2" required>
+          </div>
+          <div class="form-group">
+            <label for="f-status">Booking Status</label>
+            <select id="f-status">
+              <option value="pending" selected>Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estimated Amount</label>
+            <input type="text" id="f-amount-display" readonly placeholder="Auto-calculated" style="opacity:0.7;cursor:default">
+          </div>
+          <div class="form-group full">
+            <label for="f-notes">Special Requests</label>
+            <textarea id="f-notes" placeholder="Dietary requirements, accessibility needs, special occasions…"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="modal-cancel">Cancel</button>
+      <button class="btn btn-gold" id="modal-submit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Create Booking
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
